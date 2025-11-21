@@ -12,25 +12,6 @@ interface NavbarProps {
 export default function Navbar({ isScrolled }: NavbarProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [cartCount, setCartCount] = useState(0)
-
-  useEffect(() => {
-    const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
-      const count = cart.reduce((total: number, item: any) => total + item.quantity, 0)
-      setCartCount(count)
-    }
-
-    updateCartCount()
-    window.addEventListener("storage", updateCartCount)
-    // Custom event for cart updates within the same tab
-    window.addEventListener("cartUpdated", updateCartCount)
-
-    return () => {
-      window.removeEventListener("storage", updateCartCount)
-      window.removeEventListener("cartUpdated", updateCartCount)
-    }
-  }, [])
 
   const menuItems = [
     { label: "Home", href: "/" },

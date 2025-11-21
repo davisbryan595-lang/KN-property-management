@@ -4,11 +4,6 @@ import { useState, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
 
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden pt-20">
