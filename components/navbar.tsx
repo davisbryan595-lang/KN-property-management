@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Menu, X, Phone, ShoppingCart, User } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 
 interface NavbarProps {
   isScrolled: boolean
@@ -12,31 +12,13 @@ interface NavbarProps {
 export default function Navbar({ isScrolled }: NavbarProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [cartCount, setCartCount] = useState(0)
-
-  useEffect(() => {
-    const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
-      const count = cart.reduce((total: number, item: any) => total + item.quantity, 0)
-      setCartCount(count)
-    }
-
-    updateCartCount()
-    window.addEventListener("storage", updateCartCount)
-    // Custom event for cart updates within the same tab
-    window.addEventListener("cartUpdated", updateCartCount)
-
-    return () => {
-      window.removeEventListener("storage", updateCartCount)
-      window.removeEventListener("cartUpdated", updateCartCount)
-    }
-  }, [])
 
   const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Shop", href: "/products" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/services" },
+    { label: "About Us", href: "/about" },
+    { label: "Testimonials", href: "/testimonials" },
+    { label: "Contact", href: "/contact" },
   ]
 
   return (
@@ -74,29 +56,8 @@ export default function Navbar({ isScrolled }: NavbarProps) {
             ))}
           </div>
 
-          {/* Right Side - Cart, Account, Call */}
+          {/* Right Side - Phone & Mobile Menu */}
           <div className="flex items-center gap-4">
-            {/* Cart Icon */}
-            <button
-              onClick={() => router.push("/cart")}
-              className="relative text-slate-300 hover:text-amber-400 transition-colors"
-            >
-              <ShoppingCart size={22} />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
-            {/* Account Icon */}
-            <button
-              onClick={() => router.push("/account")}
-              className="hidden sm:block text-slate-300 hover:text-amber-400 transition-colors"
-            >
-              <User size={22} />
-            </button>
-
             {/* Call Button */}
             <a
               href="tel:704-858-3665"
@@ -120,27 +81,17 @@ export default function Navbar({ isScrolled }: NavbarProps) {
               <Link
                 key={item.label}
                 href={item.href}
-                className="block px-4 py-2 text-slate-300 hover:text-amber-400 transition-colors"
+                className="block px-4 py-3 text-slate-300 hover:text-amber-400 hover:bg-slate-800/50 transition-colors text-sm font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <button
-              onClick={() => {
-                router.push("/cart")
-                setIsOpen(false)
-              }}
-              className="block w-full text-left px-4 py-2 text-slate-300 hover:text-amber-400 transition-colors"
-            >
-              Cart {cartCount > 0 && `(${cartCount})`}
-            </button>
             <a
               href="tel:704-858-3665"
-              className="block px-4 py-2 text-amber-400 font-semibold mt-2"
-              onClick={() => setIsOpen(false)}
+              className="block px-4 py-3 text-amber-400 hover:bg-slate-800/50 transition-colors text-sm font-semibold border-t border-slate-800 mt-2"
             >
-              Call: 704-858-3665
+              📞 Call 704-858-3665
             </a>
           </div>
         )}

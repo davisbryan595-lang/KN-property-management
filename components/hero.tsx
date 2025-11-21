@@ -1,14 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
 
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden pt-20">
@@ -24,11 +18,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div
-        className={`relative z-10 h-screen flex flex-col items-center justify-center px-4 transition-all duration-1000 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
+      <div className="relative z-10 h-screen flex flex-col items-center justify-center px-4 transition-all duration-1000 opacity-100">
         <div className="text-center max-w-4xl mx-auto">
           {/* Subtitle */}
           <div className="mb-6 inline-block">

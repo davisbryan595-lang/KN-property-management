@@ -1,61 +1,77 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import Footer from "@/components/footer"
 import ScrollProgress from "@/components/scroll-progress"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
-import { products } from "@/lib/products"
-import ProductCard from "@/components/ecommerce/product-card"
+import { services } from "@/lib/services"
 import { Star, Zap, Shield, Users } from "lucide-react"
 
 export default function Home() {
   const router = useRouter()
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   return (
     <main className="min-h-screen bg-slate-950 overflow-hidden">
       <ScrollProgress />
-      <Navbar isScrolled={isScrolled} />
+      <Navbar isScrolled={false} />
       <Hero />
 
-      {/* Featured Products */}
+      {/* Featured Services */}
       <section className="py-24 bg-gradient-to-b from-slate-950 to-slate-900 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <p className="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-4">Featured Services</p>
+            <p className="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-4">Our Core Services</p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-slate-50 mb-6">
-              Premium Solutions for Your Properties
+              Premium Property Management Solutions
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Explore our comprehensive range of property management services designed for serious investors
+              Comprehensive services designed to maximize your real estate investments and provide peace of mind
             </p>
           </div>
 
-          {/* Featured Products Grid */}
+          {/* Featured Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {products.slice(0, 3).map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {services.slice(0, 3).map((service) => (
+              <div
+                key={service.id}
+                className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-amber-400 transition-all group"
+              >
+                <div className="relative overflow-hidden bg-slate-800 h-48">
+                  <img
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="p-6 flex flex-col">
+                  <p className="text-xs text-amber-400 font-semibold tracking-widest uppercase mb-2">
+                    {service.category}
+                  </p>
+                  <h3 className="font-serif text-xl font-bold text-slate-50 mb-2 group-hover:text-amber-400 transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">{service.description}</p>
+                  <Button
+                    onClick={() => router.push(`/services/${service.id}`)}
+                    className="w-full bg-amber-400 text-slate-900 hover:bg-amber-500 font-semibold"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
 
           {/* View All Button */}
           <div className="text-center">
             <Button
-              onClick={() => router.push("/products")}
-              className="bg-amber-400 text-slate-900 hover:bg-amber-500 px-8 py-3 font-semibold text-lg"
+              onClick={() => router.push("/services")}
+              variant="outline"
+              className="border-amber-400 text-amber-400 hover:bg-amber-400/10 px-8 py-3 font-semibold text-lg"
             >
               View All Services
             </Button>
@@ -160,6 +176,16 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <Button
+              onClick={() => router.push("/testimonials")}
+              variant="outline"
+              className="border-amber-400 text-amber-400 hover:bg-amber-400/10"
+            >
+              Read More Testimonials
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -174,14 +200,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={() => router.push("/products")}
+              onClick={() => router.push("/contact")}
               className="bg-amber-400 text-slate-900 hover:bg-amber-500 px-8 py-3 font-semibold text-lg"
             >
-              Explore Services
+              Schedule Consultation
             </Button>
             <a
               href="tel:704-858-3665"
-              className="bg-slate-900 border border-slate-700 text-amber-400 hover:bg-slate-800 px-8 py-3 font-semibold text-lg rounded-lg transition-colors"
+              className="bg-slate-900 border border-slate-700 text-amber-400 hover:bg-slate-800 px-8 py-3 font-semibold text-lg rounded-lg transition-colors flex items-center justify-center"
             >
               Call 704-858-3665
             </a>
