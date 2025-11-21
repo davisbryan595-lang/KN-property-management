@@ -43,8 +43,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     })
   }
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button')) return
+    router.push(`/products/${product.id}`)
+  }
+
   return (
-    <button onClick={() => router.push(`/products/${product.id}`)} className="group text-left h-full">
+    <div onClick={handleCardClick} className="group text-left h-full cursor-pointer">
       <div className="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-400 transition-all h-full flex flex-col hover:shadow-lg hover:shadow-amber-400/10">
         {/* Image */}
         <div className="relative overflow-hidden bg-slate-800 h-64">
@@ -111,6 +116,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Button>
         </div>
       </div>
-    </button>
+    </div>
   )
 }
