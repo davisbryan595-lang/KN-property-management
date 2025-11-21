@@ -37,7 +37,7 @@ export default function SavedItemsPage() {
 
   const addToCart = (product: Product) => {
     const cartItem = {
-      id: `${product.id}-${Date.now()}`,
+      id: `${product.id}-${crypto.randomUUID()}`,
       productId: product.id,
       name: product.name,
       price: product.price,

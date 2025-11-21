@@ -29,7 +29,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
   const handleAddToCart = () => {
     const cartItem = {
-      id: `${product.id}-${Date.now()}`,
+      id: `${product.id}-${crypto.randomUUID()}`,
       productId: product.id,
       name: product.name,
       price: product.price,

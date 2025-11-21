@@ -28,8 +28,8 @@ export const getOrders = (): Order[] => {
 export const createOrder = (orderData: Omit<Order, "id" | "orderNumber" | "date">): Order => {
   const order: Order = {
     ...orderData,
-    id: `ord-${Date.now()}`,
-    orderNumber: `KN${Math.random().toString(36).substring(2, 11).toUpperCase()}`,
+    id: `ord-${crypto.randomUUID()}`,
+    orderNumber: `KN${crypto.randomUUID().replace(/-/g, '').substring(0, 9).toUpperCase()}`,
     date: new Date().toISOString(),
   }
 
