@@ -1,7 +1,7 @@
 "use client"
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = 2025
 
   return (
     <footer className="bg-slate-900 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8">
