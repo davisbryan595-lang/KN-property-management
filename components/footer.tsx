@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-serif text-sm font-bold text-slate-50">KN</div>
-                <div className="text-xs text-amber-400 -mt-1">Property Mgmt</div>
+                <div className="text-xs text-amber-400 -mt-1">Property Management</div>
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -29,27 +29,27 @@ export default function Footer() {
             <h4 className="font-semibold text-slate-50 mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#home" className="text-slate-400 hover:text-amber-400 transition-colors">
+                <a href="/" className="text-slate-400 hover:text-amber-400 transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-slate-400 hover:text-amber-400 transition-colors">
+                <a href="/services" className="text-slate-400 hover:text-amber-400 transition-colors">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="text-slate-400 hover:text-amber-400 transition-colors">
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-slate-400 hover:text-amber-400 transition-colors">
+                <a href="/about" className="text-slate-400 hover:text-amber-400 transition-colors">
                   About
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-slate-400 hover:text-amber-400 transition-colors">
+                <a href="/testimonials" className="text-slate-400 hover:text-amber-400 transition-colors">
+                  Testimonials
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="text-slate-400 hover:text-amber-400 transition-colors">
                   Contact
                 </a>
               </li>
